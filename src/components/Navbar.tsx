@@ -24,44 +24,34 @@ export default function Navbar() {
                 fontFamily: 'Geometrisk, Inter, system-ui, sans-serif',
               }}
             >
-              placeholder
+              grader.ai
             </Link>
           </motion.div>
 
           <div className="hidden lg:flex items-center space-x-6 xl:space-x-8">
             <Link
               href="/"
-              className="text-gray-300 hover:text-[#00ff88] transition-colors text-sm xl:text-base"
+              className="text-white hover:text-[#00ff88] transition-colors text-sm xl:text-base"
             >
               Home
             </Link>
             <Link
-              href="/dashboard"
-              className="text-gray-300 hover:text-[#00ff88] transition-colors text-sm xl:text-base"
+              href="/about"
+              className="text-white hover:text-[#00ff88] transition-colors text-sm xl:text-base"
             >
-              Dashboard
+              About Us
             </Link>
             <Link
               href="/paper-checker"
-              className="text-gray-300 hover:text-[#00ff88] transition-colors text-sm xl:text-base"
+              className="text-white hover:text-[#00ff88] transition-colors text-sm xl:text-base"
             >
               Paper Checker
             </Link>
-            <button
-              type="button"
-              className="text-gray-300 hover:text-[#00ff88] transition-colors text-sm xl:text-base"
-              onClick={() => {
-                const featuresSection = document.getElementById('features');
-                featuresSection?.scrollIntoView({ behavior: 'smooth' });
-              }}
-            >
-              Features
-            </button>
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               type="button"
-              className="bg-[#00ff88] text-black px-4 py-2 xl:px-6 xl:py-3 rounded-full font-medium hover:bg-[#00e87a] transition-colors text-sm xl:text-base"
+              className="cursor-pointer bg-[#00ff88] text-black px-4 py-2 xl:px-6 xl:py-3 rounded-full font-medium hover:bg-[#00e87a] transition-colors text-sm xl:text-base"
             >
               Get Started
             </motion.button>

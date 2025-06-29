@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { useState } from 'react';
 import Squares from '@/components/ui/SquareBg';
+import Navbar from '@/components/Navbar';
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -16,6 +17,7 @@ export default function Home() {
 
   return (
     <div className="h-full bg-transparent text-white overflow-x-hidden overflow-y-hidden">
+      <Navbar></Navbar>
       <div className="absolute w-full h-full z-[-10]">
         <Squares
           speed={0.5}
@@ -25,130 +27,6 @@ export default function Home() {
           hoverFillColor="#222"
         />
       </div>
-      <nav className="fixed top-0 w-full z-50 bg-transparent backdrop-blur-s">
-        <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-14 sm:h-16">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="flex items-center space-x-1.5 sm:space-x-2 relative top-[1px]"
-            >
-              <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[#00ff88] rounded-full"></div>
-              <span
-                className="text-lg sm:text-xl font-bold tracking-wide"
-                style={{
-                  fontFamily: 'Geometrisk, Inter, system-ui, sans-serif',
-                }}
-              >
-                grader.ai
-              </span>
-            </motion.div>
-
-            <div className="hidden lg:flex items-center space-x-6 xl:space-x-8">
-              <a
-                href="#home"
-                className="text-gray-300 hover:text-[#00ff88] transition-colors text-sm xl:text-base"
-              >
-                Home
-              </a>
-              <a
-                href="#about"
-                className="text-gray-300 hover:text-[#00ff88] transition-colors text-sm xl:text-base"
-              >
-                About
-              </a>
-              <Link
-                href="/dashboard"
-                className="text-gray-300 hover:text-[#00ff88] transition-colors text-sm xl:text-base"
-              >
-                Dashboard
-              </Link>
-              <Link
-                href="/paper-checker"
-                className="text-gray-300 hover:text-[#00ff88] transition-colors text-sm xl:text-base"
-              >
-                Paper Checker
-              </Link>
-              <button
-                type="button"
-                className="bg-white text-black px-4 py-2 xl:px-6 xl:py-3 rounded-full font-medium hover:bg-gray-200 transition-colors text-sm xl:text-base"
-              >
-                Sign up
-              </button>
-            </div>
-
-            {/* Mobile menu button */}
-            <button
-              className="lg:hidden text-white p-1"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              type="button"
-            >
-              <svg
-                className="w-5 h-5 sm:w-6 sm:h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
-            </button>
-          </div>
-
-          {/* Mobile menu */}
-          {isMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="lg:hidden bg-black/95 border-t border-gray-800 py-4"
-            >
-              <div className="flex flex-col space-y-3">
-                <a
-                  href="#home"
-                  className="text-gray-300 hover:text-[#00ff88] transition-colors px-3 py-2"
-                >
-                  Home
-                </a>
-                <a
-                  href="#about"
-                  className="text-gray-300 hover:text-[#00ff88] transition-colors px-3 py-2"
-                >
-                  About
-                </a>
-                <Link
-                  href="/dashboard"
-                  className="text-gray-300 hover:text-[#00ff88] transition-colors px-3 py-2"
-                >
-                  Dashboard
-                </Link>
-                <Link
-                  href="/paper-checker"
-                  className="text-gray-300 hover:text-[#00ff88] transition-colors px-3 py-2"
-                >
-                  Paper Checker
-                </Link>
-                <a
-                  href="#features"
-                  className="text-gray-300 hover:text-[#00ff88] transition-colors px-3 py-2"
-                >
-                  Features
-                </a>
-                <button
-                  type="button"
-                  className="bg-white text-black px-4 py-2 rounded-full font-medium hover:bg-gray-200 transition-colors mx-3 text-center"
-                >
-                  Sign up
-                </button>
-              </div>
-            </motion.div>
-          )}
-        </div>
-      </nav>
-
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-start pt-24 sm:pt-32">
         {/* Background Pattern */}
@@ -213,7 +91,8 @@ export default function Home() {
             >
               <button
                 type="button"
-                className="bg-white text-black px-6 py-3 sm:px-8 sm:py-4 rounded-full font-medium text-base sm:text-lg hover:bg-gray-200 transition-colors flex items-center space-x-2 sm:space-x-3 w-full sm:w-auto justify-center sm:justify-start"
+                className="cursor-pointer bg-white text-black px-6 py-3 sm:px-8 sm:py-4 rounded-full font-medium text-base sm:text-lg hover:bg-gray-200 transition-colors flex items-center space-x-2 sm:space-x-3 w-full sm:w-auto justify-center sm:justify-start"
+                onClick={() => {window.location.href = "/paper-checker"}}
               >
                 <span>Start</span>
                 {/* <div className="w-6 h-6 sm:w-8 sm:h-8 bg-[#00ff88] rounded-full flex items-center justify-center">
