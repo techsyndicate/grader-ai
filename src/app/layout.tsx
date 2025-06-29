@@ -5,11 +5,11 @@ import './globals.css';
 const outfit = Outfit({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'AI Education Platform',
+  title: 'grader.ai',
   description:
     'Innovative AI-powered education platform with adaptive learning, code mentoring, and personalized tutoring',
   keywords: ['AI', 'education', 'learning', 'tutoring', 'programming', 'study'],
-  authors: [{ name: 'AI Education Team' }],
+  authors: [{ name: 'Syndication' }],
   viewport: 'width=device-width, initial-scale=1',
 };
 
