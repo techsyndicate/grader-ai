@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { useState } from 'react';
-import MatrixBackground from '@/components/MatrixBackground';
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -16,11 +15,7 @@ export default function Home() {
 
   return (
     <div className="h-full bg-black text-white overflow-x-hidden overflow-y-hidden">
-      {/* Matrix Background Animation */}
-      <MatrixBackground />
-
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-sm border-b border-gray-800/50">
+      <nav className="fixed top-0 w-full z-50 bg-[#08100C] backdrop-blur-s">
         <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
           <div className="flex justify-between items-center h-14 sm:h-16">
             <motion.div
@@ -35,7 +30,7 @@ export default function Home() {
                   fontFamily: 'Geometrisk, Inter, system-ui, sans-serif',
                 }}
               >
-                placeholder
+                grader.ai
               </span>
             </motion.div>
 
@@ -64,12 +59,6 @@ export default function Home() {
               >
                 Paper Checker
               </Link>
-              {/* <a
-                href="#features"
-                className="text-gray-300 hover:text-[#00ff88] transition-colors text-sm xl:text-base"
-              >
-                Features
-              </a> */}
               <button
                 type="button"
                 className="bg-white text-black px-4 py-2 xl:px-6 xl:py-3 rounded-full font-medium hover:bg-gray-200 transition-colors text-sm xl:text-base"
