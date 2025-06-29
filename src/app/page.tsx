@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { useState } from 'react';
+import Squares from '@/components/ui/SquareBg';
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,8 +15,17 @@ export default function Home() {
   ];
 
   return (
-    <div className="h-full bg-black text-white overflow-x-hidden overflow-y-hidden">
-      <nav className="fixed top-0 w-full z-50 bg-[#08100C] backdrop-blur-s">
+    <div className="h-full bg-transparent text-white overflow-x-hidden overflow-y-hidden">
+      <div className="absolute w-full h-full z-[-10]">
+        <Squares
+          speed={0.5}
+          squareSize={40}
+          direction="diagonal"
+          borderColor="#0B4424"
+          hoverFillColor="#222"
+        />
+      </div>
+      <nav className="fixed top-0 w-full z-50 bg-transparent backdrop-blur-s">
         <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
           <div className="flex justify-between items-center h-14 sm:h-16">
             <motion.div
