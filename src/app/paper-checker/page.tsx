@@ -25,7 +25,7 @@ export default function PaperCheckerPage() {
 
       {/* Main Content */}
       <div className="relative z-20 min-h-screen">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-8">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 pt-20 pb-8 sm:pt-24 sm:pb-8">
           {/* Header */}
           {currentStep === 'input' && (
             <motion.div
@@ -41,7 +41,7 @@ export default function PaperCheckerPage() {
                 </span>
               </div>
 
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-4">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4">
                 <span className="text-white">AI</span>{' '}
                 <span
                   className="text-[#00ff88]"
@@ -52,7 +52,7 @@ export default function PaperCheckerPage() {
                 <span className="text-white"> Checker</span>{' '}
               </h1>
 
-              <p className="text-lg sm:text-xl text-gray-400 max-w-3xl mx-auto">
+              <p className="text-base sm:text-lg lg:text-xl text-gray-400 max-w-3xl mx-auto px-4 sm:px-0">
                 Upload your question papers, answer keys, and student responses.
                 Our advanced AI will provide detailed evaluations and grading in
                 seconds.
