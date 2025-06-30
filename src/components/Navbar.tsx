@@ -104,11 +104,11 @@ export default function Navbar() {
                 Home
               </Link>
               <Link
-                href="/dashboard"
+                href="https://github.com/techsyndicate/byte-heck-25"
                 className="text-gray-300 hover:text-[#00ff88] transition-colors px-3 py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Dashboard
+                Source Code
               </Link>
               <Link
                 href="/paper-checker"
@@ -117,25 +117,6 @@ export default function Navbar() {
               >
                 Paper Checker
               </Link>
-              <button
-                type="button"
-                className="text-gray-300 hover:text-[#00ff88] transition-colors px-3 py-2 text-left"
-                onClick={() => {
-                  setIsMenuOpen(false);
-                  const featuresSection = document.getElementById('features');
-                  featuresSection?.scrollIntoView({ behavior: 'smooth' });
-                }}
-              >
-                Features
-              </button>
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                type="button"
-                className="bg-[#00ff88] text-black px-4 py-2 rounded-full font-medium hover:bg-[#00e87a] transition-colors mx-3 text-center"
-              >
-                Get Started
-              </motion.button>
             </div>
           </motion.div>
         )}
