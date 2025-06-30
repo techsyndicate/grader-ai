@@ -9,7 +9,7 @@ import {
   Upload,
   Zap,
 } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import EvaluationResult from '@/components/EvaluationResult';
 import FileUploader from '@/components/FileUploader';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -50,18 +50,13 @@ export default function PaperCheckerInterface({
   });
 
   const updateState = (updates: Partial<PaperCheckerState>) => {
-    setState((prev) => {
-      const newState = { ...prev, ...updates };
-      if (
-        onStepChange &&
-        updates.currentStep &&
-        updates.currentStep !== prev.currentStep
-      ) {
-        onStepChange(updates.currentStep);
-      }
-      return newState;
-    });
+    setState((prev) => ({ ...prev, ...updates }));
   };
+  useEffect(() => {
+    if (onStepChange) {
+      onStepChange(state.currentStep);
+    }
+  }, [state.currentStep, onStepChange]);
 
   const _handleFileChange = (
     files: File[],
@@ -211,57 +206,9 @@ export default function PaperCheckerInterface({
   const canEvaluate =
     state.questionPaper && state.answerKey && state.studentAnswers;
 
-  if (state.currentStep === 'results') {
-    return (
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="min-h-screen bg-black"
-      >
-        <div className="max-w-7xl mx-auto px-6 py-12">
-          {/* Header */}
-          <div className="flex items-center justify-between mb-12">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.2 }}
-              className="space-y-2"
-            >
-              <h1 className="text-4xl font-bold text-white">
-                Evaluation Complete
-              </h1>
-              <p className="text-gray-400 text-lg">
-                Your analysis is ready for review
-              </p>
-            </motion.div>
-
-            <motion.button
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.4 }}
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              type="button"
-              onClick={resetForm}
-              className="px-8 py-4 bg-[#16e16e] hover:bg-[#12c65c] text-black rounded-xl font-semibold transition-all duration-300"
-            >
-              <span className="flex items-center space-x-2">
-                <span>New Evaluation</span>
-                <ArrowRight className="w-4 h-4" />
-              </span>
-            </motion.button>
-          </div>
-
-          <EvaluationResult result={state.evaluationResult} />
-        </div>
-      </motion.div>
-    );
-  }
-
   if (state.currentStep === 'processing') {
     return (
-      <div className="min-h-screen bg-black flex items-center justify-center">
+      <div className="fixed inset-0 bg-black flex items-center justify-center overflow-hidden">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -345,69 +292,52 @@ export default function PaperCheckerInterface({
 
   return (
     <div className="min-h-screen bg-black">
-      <div className="max-w-7xl mx-auto px-6 py-12">
-        {/* Hero Section */}
-        {/* <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-16"
-        >
-          <h1 className="text-5xl md:text-6xl font-bold mb-6">
-            <span className="text-[#16e16e]">Smart Paper</span>
-            <br />
-            <span className="text-white">Evaluation</span>
-          </h1>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
-            Advanced AI-powered assessment that analyzes student responses with
-            precision and provides detailed insights
-          </p>
-        </motion.div> */}
-
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 py-8 sm:py-12">
         {/* Main Interface Grid */}
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="grid lg:grid-cols-3 gap-6 lg:gap-8">
           {/* Upload Section */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2 }}
-            className="lg:col-span-2 space-y-8"
+            className="lg:col-span-2 space-y-6 lg:space-y-8"
           >
             {/* Upload Card */}
-            <div className="bg-[#181414] rounded-2xl p-8 border border-gray-700">
-              <div className="flex items-center space-x-3 mb-8">
+            <div className="bg-[#181414] rounded-2xl p-4 sm:p-6 lg:p-8 border border-gray-700">
+              <div className="flex items-center space-x-3 mb-6 sm:mb-8">
                 <div className="p-2 bg-[#16e16e] rounded-xl">
-                  <Upload className="w-6 h-6 text-black" />
+                  <Upload className="w-5 h-5 sm:w-6 sm:h-6 text-black" />
                 </div>
-                <h2 className="text-2xl font-bold text-white">
+                <h2 className="text-xl sm:text-2xl font-bold text-white">
                   Upload Documents
                 </h2>
               </div>
 
               <Tabs defaultValue="question" className="w-full">
-                <TabsList className="grid w-full grid-cols-3 bg-[#181414] rounded-xl p-1">
+                <TabsList className="grid w-full grid-cols-1 sm:grid-cols-3 bg-[#181414] rounded-xl p-1 gap-1 sm:gap-0">
                   <TabsTrigger
                     value="question"
-                    className="data-[state=active]:bg-[#16e16e] data-[state=active]:text-black rounded-lg transition-all duration-300"
+                    className="data-[state=active]:bg-[#16e16e] data-[state=active]:text-black rounded-lg transition-all duration-300 text-xs sm:text-sm py-2 sm:py-1.5"
                   >
                     Question Paper
                   </TabsTrigger>
                   <TabsTrigger
                     value="answer"
-                    className="data-[state=active]:bg-[#16e16e] data-[state=active]:text-black rounded-lg transition-all duration-300"
+                    className="data-[state=active]:bg-[#16e16e] data-[state=active]:text-black rounded-lg transition-all duration-300 text-xs sm:text-sm py-2 sm:py-1.5"
                   >
                     Answer Key
                   </TabsTrigger>
                   <TabsTrigger
                     value="student"
-                    className="data-[state=active]:bg-[#16e16e] data-[state=active]:text-black rounded-lg transition-all duration-300"
+                    className="data-[state=active]:bg-[#16e16e] data-[state=active]:text-black rounded-lg transition-all duration-300 text-xs sm:text-sm py-2 sm:py-1.5"
                   >
                     Student Answers
                   </TabsTrigger>
                 </TabsList>
 
-                <TabsContent value="question" className="mt-6">
+                <TabsContent value="question" className="mt-18">
                   <div className="space-y-6">
-                    <div className="flex items-center space-x-3">
+                    <div className="flex items-center space-x-3 pt-2">
                       <FileText className="w-5 h-5 text-gray-400" />
                       <span className="text-gray-300 font-medium">
                         Question Paper
@@ -451,9 +381,9 @@ export default function PaperCheckerInterface({
                   </div>
                 </TabsContent>
 
-                <TabsContent value="answer" className="mt-6">
+                <TabsContent value="answer" className="mt-18">
                   <div className="space-y-6">
-                    <div className="flex items-center space-x-3">
+                    <div className="flex items-center space-x-3 pt-2">
                       <FileText className="w-5 h-5 text-gray-400" />
                       <span className="text-gray-300 font-medium">
                         Answer Key
@@ -497,9 +427,9 @@ export default function PaperCheckerInterface({
                   </div>
                 </TabsContent>
 
-                <TabsContent value="student" className="mt-6">
+                <TabsContent value="student" className="mt-18">
                   <div className="space-y-6">
-                    <div className="flex items-center space-x-3">
+                    <div className="flex items-center space-x-3 pt-2">
                       <FileText className="w-5 h-5 text-gray-400" />
                       <span className="text-gray-300 font-medium">
                         Student Answers
@@ -551,13 +481,13 @@ export default function PaperCheckerInterface({
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.4 }}
-            className="space-y-8"
+            className="space-y-6 lg:space-y-8"
           >
             {/* Progress Card */}
-            <div className="bg-[#181414] rounded-2xl p-8 border border-gray-700">
-              <div className="flex items-center space-x-3 mb-8">
+            <div className="bg-[#181414] rounded-2xl p-4 sm:p-6 lg:p-8 border border-gray-700">
+              <div className="flex items-center space-x-3 mb-6 sm:mb-8">
                 <div className="w-3 h-3 bg-[#16e16e] rounded-full"></div>
-                <h3 className="text-xl font-bold text-white">Progress</h3>
+                <h3 className="text-lg sm:text-xl font-bold text-white">Progress</h3>
               </div>
 
               <div className="space-y-4">
@@ -662,14 +592,14 @@ export default function PaperCheckerInterface({
               type="button"
               onClick={handleEvaluation}
               disabled={!canEvaluate || state.isProcessing}
-              className={`w-full py-6 px-8 rounded-2xl font-bold text-xl transition-all duration-300 ${
+              className={`w-full py-4 sm:py-6 px-6 sm:px-8 rounded-2xl font-bold text-lg sm:text-xl transition-all duration-300 ${
                 canEvaluate && !state.isProcessing
                   ? 'bg-[#16e16e] hover:bg-[#12c65c] text-black'
                   : 'bg-[#181414] text-gray-500 cursor-not-allowed'
               }`}
             >
               {state.isProcessing ? (
-                <div className="flex items-center justify-center space-x-3">
+                <div className="flex items-center justify-center space-x-2 sm:space-x-3">
                   <motion.div
                     animate={{ rotate: 360 }}
                     transition={{
@@ -677,20 +607,74 @@ export default function PaperCheckerInterface({
                       repeat: Infinity,
                       ease: 'linear',
                     }}
-                    className="w-6 h-6 border-2 border-gray-400 border-t-transparent rounded-full"
+                    className="w-5 h-5 sm:w-6 sm:h-6 border-2 border-gray-400 border-t-transparent rounded-full"
                   />
-                  <span>Processing Documents...</span>
+                  <span className="text-sm sm:text-base">Processing Documents...</span>
                 </div>
               ) : (
-                <div className="flex items-center justify-center space-x-3">
-                  <Sparkles className="w-6 h-6" />
-                  <span>Generate AI Evaluation</span>
-                  <ArrowRight className="w-6 h-6" />
+                <div className="flex items-center justify-center space-x-2 sm:space-x-3">
+                  <Sparkles className="w-5 h-5 sm:w-6 sm:h-6" />
+                  <span className="text-sm sm:text-base">Generate AI Evaluation</span>
+                  <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
               )}
             </motion.button>
           </motion.div>
         </div>
+
+        {/* Results Section - Appears at the bottom when evaluation is complete */}
+        {state.currentStep === 'results' && (
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="mt-12 lg:mt-16"
+          >
+            {/* Header */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.5 }}
+              className="space-y-2 mb-8 lg:mb-12"
+            >
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white">
+                Evaluation Complete
+              </h2>
+              <p className="text-gray-400 text-base sm:text-lg">
+                Your analysis is ready for review
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8 }}
+            >
+              <EvaluationResult result={state.evaluationResult} />
+            </motion.div>
+
+            {/* New Evaluation Button - Below Results */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.0 }}
+              className="mt-8 lg:mt-12 flex justify-center"
+            >
+              <motion.button
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                type="button"
+                onClick={resetForm}
+                className="px-8 sm:px-10 py-4 sm:py-5 bg-[#16e16e] hover:bg-[#12c65c] text-black rounded-2xl font-bold text-lg sm:text-xl transition-all duration-300"
+              >
+                <span className="flex items-center space-x-3">
+                  <span>New Evaluation</span>
+                  <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6" />
+                </span>
+              </motion.button>
+            </motion.div>
+          </motion.div>
+        )}
       </div>
     </div>
   );
