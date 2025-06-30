@@ -10,9 +10,6 @@ export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const stats: Array<{ number: string; label: string }> = [
-    // { number: '30%', label: 'Time Saved' },
-    // { number: '10k+', label: 'Graded Papers' },
-    // { number: '500+', label: 'Teachers' },
   ];
 
   return (
@@ -28,7 +25,7 @@ export default function Home() {
         />
       </div>
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-start pt-24 sm:pt-32">
+      <section className="relative min-h-screen flex items-center justify-center pt-20 pb-8 sm:pt-32 sm:pb-16">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-5 z-10">
           <div
@@ -40,13 +37,13 @@ export default function Home() {
         </div>
 
         <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 w-full relative z-20">
-          <div className="max-w-full lg:max-w-4xl xl:max-w-5xl">
+          <div className="max-w-full lg:max-w-4xl xl:max-w-5xl text-center sm:text-left">
             {/* AI Badge */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="inline-flex items-center space-x-1.5 sm:space-x-2 bg-gray-900/50 border border-gray-700 rounded-full px-3 sm:px-4 py-1.5 sm:py-2 mb-6 sm:mb-8"
+              className="inline-flex items-center space-x-1.5 sm:space-x-2 bg-gray-900/50 border border-gray-700 rounded-full px-3 sm:px-4 py-1.5 sm:py-2 mb-8 sm:mb-8"
             >
               <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[#00ff88] rounded-full"></div>
               <span className="text-xs sm:text-sm text-gray-300">
@@ -59,7 +56,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-bold leading-[0.9] mb-6 sm:mb-8 break-words"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-bold leading-[0.9] mb-8 sm:mb-8 break-words"
             >
               <span className="font-raleway-regular">AI: </span>
               <span className="font-raleway-light"> The </span>
@@ -77,7 +74,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="text-base sm:text-lg lg:text-xl text-gray-400 mb-8 sm:mb-10 lg:mb-12 max-w-full lg:max-w-2xl leading-relaxed"
+              className="text-base sm:text-lg lg:text-xl text-gray-400 mb-10 sm:mb-10 lg:mb-12 max-w-full lg:max-w-2xl leading-relaxed mx-auto sm:mx-0"
             >
               Revolutionize your learning with AI.
             </motion.p>
@@ -87,7 +84,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
-              className="mb-12 sm:mb-16 lg:mb-20"
+              className="mb-16 sm:mb-16 lg:mb-20"
             >
               <button
                 type="button"
@@ -95,21 +92,6 @@ export default function Home() {
                 onClick={() => {window.location.href = "/paper-checker"}}
               >
                 <span>Start</span>
-                {/* <div className="w-6 h-6 sm:w-8 sm:h-8 bg-[#00ff88] rounded-full flex items-center justify-center">
-                  <svg
-                    className="w-3 h-3 sm:w-4 sm:h-4 text-black"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
-                </div> */}
               </button>
             </motion.div>
 
@@ -133,19 +115,6 @@ export default function Home() {
             </motion.div>
           </div>
         </div>
-
-        {/* Right side elements */}
-        {/* <div className="absolute right-4 lg:right-8 top-1/2 transform -translate-y-1/2 text-xs text-gray-600 space-y-3 lg:space-y-4 writing-mode-vertical hidden xl:block z-20">
-          <div className="transform rotate-90 origin-center whitespace-nowrap">
-            INSTAGRAM
-          </div>
-          <div className="transform rotate-90 origin-center whitespace-nowrap">
-            WHATSAPP
-          </div>
-          <div className="transform rotate-90 origin-center whitespace-nowrap">
-            FACEBOOK
-          </div>
-        </div> */}
       </section>
     </div>
   );
