@@ -52,7 +52,9 @@ export default function Navbar() {
               whileTap={{ scale: 0.95 }}
               type="button"
               className="cursor-pointer bg-[#00ff88] text-black px-4 py-2 xl:px-6 xl:py-3 rounded-full font-medium hover:bg-[#00e87a] transition-colors text-sm xl:text-base"
-              onClick={() => {window.location.href = "/paper-checker"}}
+              onClick={() => {
+                window.location.href = '/paper-checker';
+              }}
             >
               Get Started
             </motion.button>
@@ -104,7 +106,7 @@ export default function Navbar() {
                 Home
               </Link>
               <Link
-                href="https://github.com/techsyndicate/byte-heck-25"
+                href="https://github.com/techsyndicate/grader-ai"
                 className="text-gray-300 hover:text-[#00ff88] transition-colors px-3 py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
