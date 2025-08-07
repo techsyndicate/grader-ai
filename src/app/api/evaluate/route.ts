@@ -49,6 +49,8 @@ Score: x/y
 Feedback: xyz
 
 5. Note: It is important to use \\n after every line to separate the questions, answers and the feedback. Strictly stick to the answers and questions provided by the user and do not add any additional question and answers on your own.
+
+6. In the end calculate the total marks scored by the student.
 `;
 
     const messages = [
